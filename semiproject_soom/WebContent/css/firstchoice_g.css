@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+/* 초기화 */
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemon&family=Lilita+One&family=Luckiest+Guy&family=Paytone+One&family=Sniglet:wght@800&family=Work+Sans:wght@900&display=swap');
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(22, 25, 41);
+}
+
+a {
+    text-decoration: none;
+    color: rgb(244, 244, 244);
+    cursor: pointer;
+}
+
+.fix_header {
+    height: 90px;
+    width: 100%;
+    box-shadow: 0px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    background-color: rgb(23, 26, 40);
+    float: right;
+    right: 0px;
+}
+
+#fclist {
+    display: none;
+    width: 300px;
+    height: 170px;
+    position: absolute;
+    background-color: rgb(23, 26, 40);
+    right: 70px;
+    top: 90px;
+    z-index: 1;
+    border: 3px solid rgb(74, 254, 0);
+    border-radius: 30px;
+}
+
+#jelly_title {
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    color: rgb(74, 254, 0);
+    top: -30px;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+}
+
+#jelly_title::after {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    width: 20px;
+    height: 13px;
+    top: 3px;
+    right: 0;
+    border-right: 1px solid rgb(74, 254, 0);
+    animation: cursor 0.5s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent
+    }
+    50% {
+        border-color: orange;
+    }
+}
+
+.jimg {
+    display: none;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    top: 20px;
+    cursor: pointer;
+}
+
+#j1 {
+    left: 20px;
+}
+
+#j2 {
+    left: 120px;
+}
+
+#j3 {
+    right: 20px;
+}
+
+.gonext {
+    display: none;
+    position: absolute;
+    height: 40px;
+    width: 150px;
+    right: 0px;
+    border-radius: 0px 0px 30px 0px;
+    bottom: 0px;
+    border-top: 3px solid rgb(74, 254, 0);
+    border-left: 3px solid rgb(74, 254, 0);
+    text-align: center;
+    line-height: 40px;
+    color: rgb(74, 254, 0);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 17px;
+}
+
+.goback {
+    display: none;
+    position: absolute;
+    height: 40px;
+    width: 150px;
+    border-radius: 0px 0px 0px 30px;
+    bottom: 0px;
+    border-top: 3px solid rgb(74, 254, 0);
+    border-right: 3px solid rgb(74, 254, 0);
+    text-align: center;
+    line-height: 40px;
+    color: rgb(74, 254, 0);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 17px;
+}
+
+.notyet {
+    position: absolute;
+    height: 40px;
+    width: 300px;
+    border-radius: 0px 0px 30px 30px;
+    bottom: 0px;
+    border-top: 3px solid rgb(74, 254, 0);
+    text-align: center;
+    line-height: 40px;
+    color: rgb(74, 254, 0);
+    font-family: 'Roboto Mono', monospace;
+    cursor: default;
+    font-size: 17px;
+}
+
+.jname {
+    display: none;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    bottom: 48px;
+    line-height: 40px;
+    color: rgb(74, 254, 0);
+    text-align: center;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+#mu_genre_2 {
+    left: 100px;
+}
+
+#mu_genre_3 {
+    right: 0px;
+}
+
+#img_con {
+    width: 60px;
+    height: 75px;
+    position: absolute;
+    right: 70px;
+    top: 15px;
+}
+
+#img {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    /* background-image: url('../../../image/jelly-beans.svg');
+	background-size: 60px; */
+    animation: bounce .3s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+#img_con:hover~#fclist {
+    display: block;
+}
+
+#fclist:hover {
+    display: block;
+}
+
+
+/* #random {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    right: 400px;
+    margin-top: 110px;
+    background-image: url('/image/001-circular-arrow.svg');
+    background-size: 70px;
+    opacity: 0.5;
+    transition: all 1s;
+}
+
+#random:hover {
+    animation: rotate_image 1s linear infinite;
+    transform-origin: 50% 50%;
+    opacity: 1;
+} */
+
+@keyframes rotate_image {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.firstchoice_title_a {
+    top: 90px;
+    position: relative;
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    color: rgb(244, 244, 244);
+}
+
+#firstchoice_title {
+    position: absolute;
+    font-size: 40px;
+    margin-top: 110px;
+    width: 100%;
+}
+
+#firstchoice_sub {
+    position: absolute;
+    margin-top: 160px;
+    width: 100%;
+}
+
+#fc_content {
+    position: relative;
+    width: 100%;
+    margin-top: 200px;
+}
+
+#fctbl>tbody {
+    position: absolute;
+    width: 1200px;
+    left: 50%;
+    margin-left: -600px;
+}
+
+.fc_a {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+#fctbl>tbody>tr>td {
+    padding-right: 177.9px;
+    padding-bottom: 190px;
+}
+
+#fctbl>tbody>tr>td:nth-of-type(7) {
+    padding-right: 0px;
+}
+
+#achk {
+    position: absolute;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0;
+}
+
+.fc_a:hover {
+    width: 150px;
+    height: 150px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+#achk:hover~.fc_a {
+    width: 150px;
+    height: 150px;
+    margin-left: -15px;
+    margin-top: -15px;
+    border: 5px solid rgb(74, 254, 0);
+    box-shadow: 0 0 25px 0 rgb(74, 254, 0), 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+}
+
+#achk:checked~.fc_a {
+    width: 150px;
+    height: 150px;
+    margin-left: -20px;
+    margin-top: -20px;
+    border: 10px solid rgb(74, 254, 0);
+}

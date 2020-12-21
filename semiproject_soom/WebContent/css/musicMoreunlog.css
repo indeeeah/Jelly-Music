@@ -1,0 +1,1073 @@
+@charset "UTF-8";
+
+/* 초기화 */
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemon&family=Lilita+One&family=Luckiest+Guy&family=Paytone+One&family=Sniglet:wght@800&family=Work+Sans:wght@900&display=swap');
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(22, 25, 41);
+    overflow: auto;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+* {
+    color: rgb(244, 244, 244);
+}
+
+
+/* fix_nav */
+
+#fix_side {
+    width: 259px;
+    height: 100%;
+    background-color: rgb(20, 23, 38);
+    position: fixed;
+    float: left;
+}
+
+#fix_logo {
+    width: 209px;
+    height: 60px;
+    top: 0px;
+    margin-top: 30px;
+    margin-left: 25px;
+}
+
+#fix_logo_title {
+    position: absolute;
+    font-family: 'Lemon', cursive;
+    font-size: 23px;
+    color: rgb(244, 244, 244);
+    line-height: 45px;
+    right: 25px;
+}
+
+#fix_logo_img {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border: 2px solid rgb(74, 254, 0);
+    border-radius: 50%;
+    background-color: rgb(74, 254, 0);
+    float: left;
+}
+
+#fix_user {
+    width: 209px;
+    height: 60px;
+    margin-left: 25px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 15px;
+}
+
+#fix_user>a {
+    display: block;
+    color: rgb(244, 244, 244);
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    border: 2px solid rgb(244, 244, 244);
+    border-radius: 20px;
+    margin-left: 54.5px;
+}
+
+#fix_user>a:hover {
+    color: black;
+    background-color: rgb(244, 244, 244);
+}
+
+#fix_side_menu {
+    overflow: hidden;
+    margin-top: 11px;
+    margin-left: 25px;
+    width: 209px;
+}
+
+#fix_side_menu>div>input[type="radio"] {
+    display: none;
+}
+
+.fix_each {
+    box-sizing: border-box;
+    border: 1px solid rgb(20, 23, 38);
+    width: 209px;
+    height: 35px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.fix_menu_icon {
+    width: 20px;
+    height: 35px;
+}
+
+.fix_each:hover {
+    box-sizing: border-box;
+    border: 1px solid rgb(74, 254, 0);
+    border-radius: 6px;
+}
+
+.fix_each_menu {
+    width: 164px;
+    color: rgb(244, 244, 244);
+    float: right;
+    line-height: 35px;
+}
+
+.fix_each_menu:hover {
+    color: rgb(168, 168, 169);
+}
+
+.fix_each:hover>.fix_each_menu {
+    width: 164px;
+}
+
+#fix_side_menu>div>ul {
+    display: none;
+    width: 209px;
+    margin-top: -10px;
+    margin-bottom: 7px;
+}
+
+#fix_side_menu>div>ul>li {
+    height: 30px;
+}
+
+#fix_side_menu>div>ul>li>a {
+    line-height: 32px;
+    margin-left: 45px;
+    font-size: 15px;
+}
+
+#fix_side_menu>div>ul>li>a:hover {
+    color: rgb(168, 168, 169);
+}
+
+nav>#fix_side_menu>div>input:nth-of-type(1):checked~.fix_each:nth-of-type(1) {
+    box-sizing: border-box;
+    border: 1px solid rgb(74, 254, 0);
+    border-radius: 6px;
+}
+
+nav>#fix_side_menu>div>input:nth-of-type(2):checked~.fix_each:nth-of-type(2) {
+    box-sizing: border-box;
+    border: 1px solid rgb(74, 254, 0);
+    border-radius: 6px;
+}
+
+nav>#fix_side_menu>div>input:nth-of-type(5):checked~.fix_each:nth-of-type(5) {
+    box-sizing: border-box;
+    border: 1px solid rgb(74, 254, 0);
+    border-radius: 6px;
+}
+
+nav>#fix_side_menu>div>input:nth-of-type(1):checked~.fix_each:nth-of-type(1)+ul {
+    display: block;
+}
+
+nav>#fix_side_menu>div>input:nth-of-type(2):checked~.fix_each:nth-of-type(2)+ul {
+    display: block;
+}
+
+nav>#fix_side_menu>div>input:nth-of-type(5):checked~.fix_each:nth-of-type(5)+ul {
+    display: block;
+}
+
+.fix_btn {
+    width: 209px;
+    height: 40px;
+    bottom: 30px;
+    margin-left: 25px;
+    position: absolute;
+}
+
+.fix_player_btn {
+    width: 209px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: rgb(74, 254, 0);
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgb(74, 254, 0);
+    box-shadow: 0 0 25px 0 rgb(74, 254, 0), 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+}
+
+.fix_player_btn:hover {
+    box-sizing: border-box;
+    border: 2px solid rgb(74, 254, 0);
+    background-color: rgb(20, 23, 38);
+    color: rgb(244, 244, 244);
+    text-shadow: 0 0 10px rgb(74, 254, 0);
+    box-shadow: 0 0 25px 0 rgb(74, 254, 0), 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* fix_header */
+
+.fix_header {
+    height: 90px;
+    width: calc(100% - 259px);
+    box-shadow: 0px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    background-color: rgb(23, 26, 40);
+    position: absolute;
+    float: right;
+    right: 0px;
+}
+
+.fix_search {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+}
+
+.fix_search:hover {
+    cursor: pointer;
+}
+
+.fix_search::before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: 22px;
+    right: 0;
+    bottom: 0;
+    left: 22px;
+    width: 12px;
+    height: 2px;
+    background: rgb(244, 244, 244);
+    transform: rotate(45deg);
+    transition: all .5s;
+}
+
+.fix_search::after {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: -5px;
+    right: 0;
+    bottom: 0;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 4px solid rgb(244, 244, 244);
+    transition: all .5s;
+}
+
+.fix_searchbx {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    border: none;
+    background: rgb(74, 254, 0);
+    color: black;
+    text-shadow: 0 0 10px rgb(74, 254, 0);
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 25px 0 rgb(74, 254, 0), 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+}
+
+.fix_searchbx:hover {
+    cursor: pointer;
+}
+
+.fix_searchbx:focus {
+    width: 300px;
+    opacity: 1;
+    cursor: text;
+}
+
+.fix_searchbx:focus~.fix_search {
+    background: #151515;
+    z-index: 6;
+}
+
+.fix_searchbx:focus~.fix_search::before {
+    top: 0;
+    left: 0;
+    width: 25px;
+}
+
+.fix_searchbx:focus~.fix_search::after {
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    border: none;
+    background: rgb(244, 244, 244);
+    border-radius: 0%;
+    transform: rotate(-45deg);
+}
+
+.fix_searchbx:focus::placeholder {
+    color: rgb(244, 244, 244);
+    opacity: 0.5;
+    font-weight: bolder;
+}
+
+.fix_realtime {
+    height: 90px;
+    width: 150px;
+    float: right;
+    margin-right: 100px;
+}
+
+.fix_rt_div {
+    position: absolute;
+    bottom: 40px;
+    right: 100px;
+    width: 150px;
+    transition: all 1s;
+    z-index: 10;
+}
+
+#fix_m_scroller {
+    height: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tri {
+    width: 0px;
+    height: 0px;
+    margin-top: 5px;
+    border-top: 5px solid none;
+    border-bottom: 5px solid red;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    float: right;
+}
+
+#fix_m_scroller .fix_item {
+    display: block;
+    animation: scroll 10s infinite;
+}
+
+#rtdrop {
+    position: absolute;
+    right: 100px;
+    width: 200px;
+    color: rgb(244, 244, 244);
+    box-sizing: border-box;
+    border: 1px solid rgb(74, 254, 0);
+    border-radius: 15px;
+    background-color: rgb(23, 26, 40);
+    top: 60px;
+    font-size: 12px;
+    display: none;
+    overflow: hidden;
+    z-index: 6;
+}
+
+#rtdrop:hover {
+    display: block;
+}
+
+#rtdrop>tbody {
+    width: 200px;
+}
+
+#rtdrop>tbody>tr>td {
+    padding: 10px;
+}
+
+#rtdrop>tr>td {
+    border: 1px;
+}
+
+.fix_realtime:hover~#rtdrop {
+    display: block;
+}
+
+.fix_searchbx:focus~#rtdrop {
+    right: 460px;
+}
+
+.rt_link {
+    font-size: 15px;
+    background: transparent;
+    text-decoration: none;
+    color: rgb(244, 244, 244);
+}
+
+.rt_link:hover {
+    animation-play-state: paused;
+    text-decoration: underline;
+}
+
+.fix_item:hover {
+    animation-play-state: paused;
+}
+
+.fix_searchbx:focus~.fix_realtime>.fix_rt_div {
+    right: 460px;
+}
+
+@keyframes scroll {
+    0.0% {
+        transform: translateY(0px)
+    }
+    10% {
+        transform: translateY(0px)
+    }
+    20% {
+        transform: translateY(-16px)
+    }
+    30% {
+        transform: translateY(-32px)
+    }
+    40% {
+        transform: translateY(-48px)
+    }
+    50% {
+        transform: translateY(-64px)
+    }
+    60% {
+        transform: translateY(-80px)
+    }
+    70% {
+        transform: translateY(-96px)
+    }
+    80% {
+        transform: translateY(-112px)
+    }
+    90% {
+        transform: translateY(-128px)
+    }
+    100% {
+        transform: translateY(-144px)
+    }
+}
+
+
+/*fix_footer*/
+
+#fix_footer {
+    position: relative;
+    height: 100px;
+    width: calc(100% - 259px);
+    bottom: 0px;
+    font-size: 11px;
+    color: rgb(244, 244, 244);
+    float: right;
+    right: 0px;
+}
+
+#fix_fline {
+    border: 0;
+    height: 1px;
+    background-color: rgb(168, 168, 169);
+}
+
+#fix_ft {
+    margin-top: 21px;
+}
+
+.fix_fc {
+    margin-left: 40px;
+    margin-top: 5px;
+}
+
+#fix_copy {
+    float: left;
+}
+
+#fix_national {
+    float: right;
+    margin-right: 40px;
+}
+
+#fix_link {
+    width: 90%;
+    float: left;
+}
+
+#fix_link>a {
+    color: rgb(244, 244, 244);
+}
+
+#fix_info {
+    float: left;
+}
+
+
+/* content */
+
+.content {
+    min-height: 600px;
+    padding-left: 259px;
+    padding-top: 90px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.container {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+hr {
+    clear: both;
+}
+
+
+/* artist info */
+
+.music_more_info {
+    padding: 60px 0 50px;
+}
+
+.music_more_info_img {
+    float: left;
+    overflow: hidden;
+    width: 195px;
+    height: 195px;
+    margin-right: 20px;
+}
+
+.music_more_info_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.music_more_info_intro,
+.option_area {
+    padding-top: 15px;
+    min-height: 100px;
+    margin-left: 225px;
+}
+
+.music_title {
+    font-size: 2.0em;
+    height: 40px;
+    font-weight: bold;
+}
+
+.music_artist .items {
+    font-size: 20px;
+}
+
+.music_summary {
+    font-size: 0.8em;
+    padding-top: 20px;
+}
+
+
+/* 소개 옵션 */
+
+.option_area {
+    width: 739px;
+    height: 42px;
+}
+
+.option_area .option_play {
+    display: inline-block;
+    border-radius: 10px;
+    vertical-align: top;
+    background: #ff1150;
+    width: 102px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.play_btn {
+    width: 5px;
+    height: 5px;
+    border-color: transparent transparent transparent rgb(244, 244, 244);
+    border-style: solid solid solid solid;
+    border-width: 8px 0 8px 16px;
+    background: #ff1150;
+}
+
+.option_area .play_btn {
+    display: inline-block;
+    border-radius: 4px;
+    vertical-align: text-bottom;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.option_area .option_buy {
+    display: inline-block;
+    border-radius: 10px;
+    vertical-align: top;
+    background: #ff1150;
+    width: 102px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.option_area .buy_btn {
+    width: 100px;
+    margin: 10px;
+}
+
+.option_area .option_more {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.option_like {
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#heart {
+    font-size: 30px;
+}
+
+#heart:hover {
+    color: red;
+}
+
+.option_drop {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+}
+
+.option_drop_menu ul {
+    top: 0;
+    left: 44px;
+}
+
+.option_drop_menu {
+    display: none;
+    position: absolute;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.option_drop:hover .option_drop_menu {
+    display: block;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.option_drop_menu li a {
+    display: block;
+    padding: 6px 20px 7px;
+    font-size: 14px;
+    text-align: left;
+    color: black;
+    white-space: nowrap;
+}
+
+
+/* lyrics */
+
+.music_more_lyrics {
+    width: 100%;
+    padding: 20px 0;
+    display: block;
+}
+
+.music_more_lyrics_section,
+.music_more_include_section,
+.music_more_singles_section,
+.music_more_related_section,
+.music_more_video_section {
+    font-size: 1.5em;
+}
+
+.music_more_lyrics_inner {
+    position: relative;
+}
+
+.music_more_lyrics_hide pre {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.music_more_lyrics_inner input {
+    display: none;
+}
+
+.music_more_lyrics_inner label {
+    font-size: 0.8em;
+    color: grey;
+}
+
+.music_more_lyrics_inner label:after {
+    content: "더보기";
+}
+
+.music_more_lyrics_inner input:checked~label:after {
+    content: "접기";
+}
+
+.music_more_lyrics_hide {
+    max-height: 220px;
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+.music_more_lyrics_inner input:checked+.music_more_lyrics_hide {
+    max-height: 1500px;
+}
+
+
+/* album */
+
+.lyrics_btn .music_more_include {
+    padding: 18px 0;
+    margin-bottom: 50px;
+}
+
+.music_more_include_img {
+    float: left;
+    margin-right: 28px;
+}
+
+.music_more_include_img img {
+    width: 150px;
+    height: 150px;
+}
+
+.music_more_include_text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.music_more_include_title {
+    font-size: 1.4em;
+    margin-top: 20px;
+}
+
+.music_more_include_artist {
+    margin-bottom: 10px;
+}
+
+.music_more_include_artist span {
+    font-size: 1.1em;
+    color: grey;
+}
+
+.music_more_include_info span {
+    font-size: 1em;
+    color: grey;
+}
+
+
+/* video */
+
+.music_more_video_inner {
+    display: flex;
+}
+
+.music_more_video_thumb {
+    background-image: url("https://musicmeta-phinf.pstatic.net/video/000/267/267754.jpg?type=ac640_360&v=20200821100910");
+    background-size: 256px;
+    width: 256px;
+    height: 144px;
+    text-align: center;
+    opacity: 1;
+    color: red;
+    margin-right: 20px;
+}
+
+.music_more_video_seriese:hover {
+    opacity: 1;
+    color: red;
+}
+
+.music_more_video_headline {
+    font-size: 1.0em;
+}
+
+.music_more_video_seriese {
+    text-align: center;
+}
+
+
+/* another album */
+
+.music_more_singles_title {
+    float: left;
+}
+
+.music_more_singles_title {
+    right: 0px;
+}
+
+.music_more_singles_plus div {
+    display: inline-block;
+}
+
+
+/* 	.music_more_singles_src_img{
+		width:150px;
+		height:150px;
+	} */
+
+.music_more_singles_inner div {
+    display: inline;
+}
+
+.music_more_singles_inner table {
+    display: inline;
+}
+
+.music_more_singles_seriese td {
+    text-align: center;
+}
+
+.music_more_singles_inner a {
+    padding-right: 19px;
+}
+
+.music_more_singles_inner td {
+    padding-bottom: 10px;
+}
+
+.music_more_singles_plus {
+    position: absolute;
+    right: 0px;
+}
+
+table tr {
+    background: grey;
+}
+
+.music_more_singles_text {
+    display: flex;
+}
+
+.music_more_singles_plus div select {
+    color: black;
+}
+
+.music_more_singles_plus div select option {
+    color: black;
+}
+
+
+/* relative playlist*/
+
+.music_more_related_text {
+    padding-bottom: 10px;
+}
+
+.music_more_related_text div {
+    display: inline;
+    right: 0px;
+}
+
+.music_more_related_plus {
+    right: 0px;
+    position: absolute;
+}
+
+.music_more_related_inner {
+    display: flex;
+}
+
+.music_more_related_another div {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.music_more_related_another {
+    display: inline-block;
+}
+
+.music_more_related_another img {
+    float: left;
+    width: 150px;
+    height: 150px;
+}
+
+.music_more_related_another {
+    padding-right: 19px;
+}
+
+.music_more_related_title a {
+    font-size: 1.1em;
+    padding-top: 50px;
+}
+
+.music_more_related_artist a {
+    font-size: 0.9em;
+    color: grey;
+}
+
+
+/* music comments */
+
+
+/* .music_more_comments{
+			display:block;
+		} */
+
+#mu_cont {
+    width: 900px;
+    height: 50px;
+    background: white;
+}
+
+table input {
+    color: black;
+}
+
+.music_comments_author,
+.music_comments_base {
+    display: flex;
+}
+
+.music_comments_author {
+    margin-bottom: 10px;
+}
+
+.music_comments_nick {
+    margin-left: 10px;
+}
+
+.music_comments_report {
+    margin-left: 20px;
+}
+
+.music_comments_cont {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.music_comments_recomm_area {
+    display: flex;
+    right: 0px;
+}
+
+.music_comments_likes {
+    margin-right: 10px;
+}
+
+
+/* .div{
+			display:block;
+		} */
+
+.music_comments_box {
+    margin-bottom: 10px;
+    border-top: 0.5px solid white;
+}
+
+.music_comments_recomm_area {
+    margin-bottom: 10px;
+}
+
+td,
+tr {
+    background: rgb(20, 23, 38);
+}
+
+.music_comments_write .commenthidden {
+    display: hidden;
+}
+
+
+/* </style><!-- footer --><style>footer {
+    height: 100px;
+    width: calc(100% - 259px);
+    right: 0px;
+    bottom: 0px;
+    font-size: 11px;
+    color: rgb(244, 244, 244);
+    display: block;
+    padding-left: 259px;
+}
+
+#link>a {
+    color: rgb(244, 244, 244);
+}
+
+#ft {
+    margin-top: 21px;
+}
+
+.fc {
+    margin-left: 40px;
+    margin-top: 5px;
+}
+
+#copy {
+    float: left;
+}
+
+#national {
+    float: right;
+    margin-right: 40px;
+}
+
+#link {
+    width: 90%;
+    float: left;
+}
+
+#info {
+    float: left;
+}
+
+#fline {
+    border: 0;
+    height: 1px;
+    background-color: rgb(168, 168, 169);
+} */
+
+
+/* modal */
+
+.far {
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+}
+
+.custom-control-label {
+    cursor: pointer;
+}

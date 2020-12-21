@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<button type="button" id="btn"
+			onclick="location.href='../managerMain.jsp';">메인으로 가기</button>
+	</div>
+	<br>
+	<form action="../UploadService" method="post"
+		enctype="multipart/form-data">
+		<fieldset  style="width: 400px; height: 100px">
+			<legend>파일 업로드</legend>
+
+			<table>
+				<tr>
+					<td>파일번호 :</td>
+					<td><input type="text" name="f_no" /></td>
+				</tr>
+				<tr>
+					<td>파일이름 :</td>
+					<td><input type="file" value="파일 선택" name="f_name" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="업로드" /></td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+</body>
+</html>
