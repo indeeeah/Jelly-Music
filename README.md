@@ -4,8 +4,10 @@
 1. 프로젝트 계획 이유
 2. 설계의 주안점
 3. Using
-4. Jelly-Music 기능 설명
-5. Document
+4. 업무일정
+5. Jelly-Music 기능 설명
+6. Document
+7. 추후 구현 예정 기능
 ------------
 ## 프로젝트 계획 이유
 > 음악 스트리밍 사이트와 동영상 스트리밍 사이트 등 여러 스트리밍 사이트를 구독하면서 많은 사이트들이 추천 알고리즘에 집중하고 있다는 것을 알게 되었습니다. '알고리즘의 선택'이라는 말이 생길 만큼 이제는 알고리즘이 단순한 추천을 넘어서 숨어있던 컨텐츠들을 유명하게 만드는 역할까지 하고 있습니다.
@@ -30,8 +32,12 @@
 5. IDE - Eclipse (EE, 2020-06)
 6. Server - Tomcat(v8.5)
 7. Document - Google Drive, StarUML
-8. Cl - Github
+8. Cl - Github, git
 9. DataBase - Oracle DataBase 11g
+------------
+## 업무일정
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 27 46" src="https://user-images.githubusercontent.com/72774483/106250839-82bc7e00-6257-11eb-99c6-11093acd3bc5.png">
+
 ------------
 ## Jelly-Music 기능 설명
 ### [mode 선택 기능]
@@ -59,11 +65,20 @@
 1. Register
 > + 회원가입 기능
 > + 선호 아티스트, 장르 선택
+>  <img width="985" alt="스크린샷 2021-01-29 오후 5 10 06" src="https://user-images.githubusercontent.com/72774483/106249622-f1004100-6255-11eb-959b-81f37c2e4050.png">
+>  <img width="983" alt="스크린샷 2021-01-29 오후 5 10 17" src="https://user-images.githubusercontent.com/72774483/106249674-05443e00-6256-11eb-9dce-0cb34fffc9f0.png">
+>
 >      + 각 3개씩 선택 시 데이터 insert, 후에 음악 추천시 영향
->      + 회원가입 완료 시 최근 재생 음악 바로 플레이를 위한 임시 데이터 insert 기능
+> + 회원가입 완료 시 최근 재생 음악 바로 플레이를 위한 임시 데이터 insert 기능
+> <img width="983" alt="스크린샷 2021-01-29 오후 5 10 33" src="https://user-images.githubusercontent.com/72774483/106249865-3ae92700-6256-11eb-9517-dca9c1e2e5f1.png">
+>
 2. Login
 > + 로그인 시 세션 생성 기능 - 아이디, 멤버쉽 유무
 3. List
+> <img width="982" alt="스크린샷 2021-01-29 오후 5 09 34" src="https://user-images.githubusercontent.com/72774483/106249436-b5fe0d80-6255-11eb-9dbd-252b0f68e5cb.png">
+><img width="985" alt="스크린샷 2021-01-29 오후 5 10 45" src="https://user-images.githubusercontent.com/72774483/106249961-5a804f80-6256-11eb-9941-a824135c1fdb.png">
+><img width="985" alt="스크린샷 2021-01-29 오후 5 11 05" src="https://user-images.githubusercontent.com/72774483/106250442-fca03780-6256-11eb-99e4-c472df4e4cb9.png">
+>
 > + 비회원
 >      + TOP 100, Heart 차트, 장르별, 무드별 음악 리스트 확인 기능
 > + 회원
@@ -72,6 +87,9 @@
 5. Real-Time Search
 > + 검색 수에 따라 실시간 검색어 변동 기능
 6. PLAYER
+><img width="984" alt="스크린샷 2021-01-29 오후 5 11 25" src="https://user-images.githubusercontent.com/72774483/106250486-0c1f8080-6257-11eb-8015-35f91ca51bb5.png">
+><img width="987" alt="스크린샷 2021-01-29 오후 5 11 37" src="https://user-images.githubusercontent.com/72774483/106250526-1a6d9c80-6257-11eb-940a-eeff4dff26c9.png">
+>
 > + 회원(이용권 무)
 >      + 이용권 유무 검사 기능
 >      + 1분 미리듣기 후 이용권 페이지 이동 기능
@@ -99,8 +117,16 @@
 ## Document
 1. 기능정의서
 2. 유스케이스
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 28 01" src="https://user-images.githubusercontent.com/72774483/106251055-da5ae980-6257-11eb-8c55-f55ab7c8824f.png">
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 28 12" src="https://user-images.githubusercontent.com/72774483/106251121-ee065000-6257-11eb-9330-50683352348d.png">
+
 3. UI 설계서
 4. ERD
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 28 35" src="https://user-images.githubusercontent.com/72774483/106251161-fd859900-6257-11eb-80f1-6775520085ce.png">
+
 5. 테이블 정의서
 6. 클래스 다이어그램
 7. 시퀀스 다이어그램
+------------
+## 추후 구현 예정 기능
+
