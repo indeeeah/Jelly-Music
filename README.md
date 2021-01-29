@@ -1,13 +1,13 @@
 # Jelly-Music 1.0.0
 ------------
 ## Contents
-1. 프로젝트 계획 이유
-2. 설계의 주안점
-3. Using
-4. 업무일정
-5. Jelly-Music 기능 설명
-6. Document
-7. 추후 구현 예정 기능
+1. [프로젝트 계획 이유](#프로젝트-계획-이유)
+2. [설계의 주안점](#설계의-주안점)
+3. [Using](#Using)
+4. [업무일정](#업무일정)
+5. [Jelly-Music 기능 설명](#Jelly-Music-기능-설명)
+6. [Document](#Document)
+7. [추후 구현 예정 기능](#추후-구현-예정-기능)
 ------------
 ## 프로젝트 계획 이유
 > 음악 스트리밍 사이트와 동영상 스트리밍 사이트 등 여러 스트리밍 사이트를 구독하면서 많은 사이트들이 추천 알고리즘에 집중하고 있다는 것을 알게 되었습니다. '알고리즘의 선택'이라는 말이 생길 만큼 이제는 알고리즘이 단순한 추천을 넘어서 숨어있던 컨텐츠들을 유명하게 만드는 역할까지 하고 있습니다.
@@ -115,13 +115,14 @@
 > + 로그아웃 후 세션 삭제 기능
 ------------
 ## Document
++ Detailed Document : can be found in [this Link.](https://drive.google.com/drive/folders/1RwXWKweTTmL5V4rGyvm4GcD8MulXOe6c?usp=sharing)
 1. 기능정의서
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 47 12" src="https://user-images.githubusercontent.com/72774483/106252832-0c6d4b00-625a-11eb-9a54-f780e331c37e.png">
->
+
 2. 유스케이스
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 28 01" src="https://user-images.githubusercontent.com/72774483/106251055-da5ae980-6257-11eb-8c55-f55ab7c8824f.png">
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 28 12" src="https://user-images.githubusercontent.com/72774483/106251121-ee065000-6257-11eb-9330-50683352348d.png">
->
+
 3. UI 설계서
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 45 00 1" src="https://user-images.githubusercontent.com/72774483/106252928-2c047380-625a-11eb-83f4-aa6b9f29f232.png">
 >
@@ -130,13 +131,13 @@
 
 5. 테이블 정의서
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 44 31" src="https://user-images.githubusercontent.com/72774483/106252986-3cb4e980-625a-11eb-892a-28afb9437914.png">
->
+
 6. 클래스 다이어그램
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 44 41" src="https://user-images.githubusercontent.com/72774483/106253061-581ff480-625a-11eb-9121-ee30a53d1a84.png">
->
+
 7. 시퀀스 다이어그램
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 42 07" src="https://user-images.githubusercontent.com/72774483/106253137-72f26900-625a-11eb-9c62-d96465389e35.png">
->
+
 ------------
 ## 추후 구현 예정 기능
 1. 파일 목록 조회 기능
