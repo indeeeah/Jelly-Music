@@ -116,17 +116,31 @@
 ------------
 ## Document
 1. 기능정의서
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 47 12" src="https://user-images.githubusercontent.com/72774483/106252832-0c6d4b00-625a-11eb-9a54-f780e331c37e.png">
+>
 2. 유스케이스
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 28 01" src="https://user-images.githubusercontent.com/72774483/106251055-da5ae980-6257-11eb-8c55-f55ab7c8824f.png">
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 28 12" src="https://user-images.githubusercontent.com/72774483/106251121-ee065000-6257-11eb-9330-50683352348d.png">
-
+>
 3. UI 설계서
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 45 00 1" src="https://user-images.githubusercontent.com/72774483/106252928-2c047380-625a-11eb-83f4-aa6b9f29f232.png">
+>
 4. ERD
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 28 35" src="https://user-images.githubusercontent.com/72774483/106251161-fd859900-6257-11eb-80f1-6775520085ce.png">
 
 5. 테이블 정의서
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 44 31" src="https://user-images.githubusercontent.com/72774483/106252986-3cb4e980-625a-11eb-892a-28afb9437914.png">
+>
 6. 클래스 다이어그램
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 44 41" src="https://user-images.githubusercontent.com/72774483/106253061-581ff480-625a-11eb-9121-ee30a53d1a84.png">
+>
 7. 시퀀스 다이어그램
+<img width="1680" alt="스크린샷 2021-01-29 오후 5 42 07" src="https://user-images.githubusercontent.com/72774483/106253137-72f26900-625a-11eb-9c62-d96465389e35.png">
+>
 ------------
 ## 추후 구현 예정 기능
-
+1. 파일 목록 조회 기능
+2. Q&A 관리 기능
+3. 사이트 통계 기능
+4. 음원, 아티스트, 장르, 무드 검색 기능
+5. 플레이어 랜덤 재생, 전곡 무한 듣기 기능
