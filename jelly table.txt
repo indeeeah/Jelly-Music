@@ -1,0 +1,507 @@
+drop table member;
+drop table manager;
+drop table allfile;
+drop table album;
+drop table artist;
+drop table music;
+drop table musiccomment;
+drop table albumcomment;
+drop table artistcomment;
+drop table post;
+drop table membership;
+drop table streaming;
+drop table buypackage;
+drop table cash;
+drop table mybag;
+drop table question;
+drop table search;
+drop table firstchoice;
+drop table musichistory;
+drop table heart;
+drop table answer;
+drop table postfile;
+drop table stats;
+drop table likes;
+drop table HATES;
+drop table report;
+drop table genre;
+drop table currmusic;
+drop table contlike;
+drop table contdislike;
+drop table mood;
+drop sequence alno_seq;
+drop sequence artno_seq;
+drop sequence MU_COMMENT_SEQ;
+drop sequence AL_COMMENT_SEQ;
+drop sequence ART_COMMENT_SEQ;
+drop sequence fno_seq;
+drop sequence P_NO_SEQ;
+drop sequence QUE_NO_SEQ;
+drop sequence ANS_NO_SEQ;
+
+
+
+-- 회원 테이블
+create table member(
+mem_id varchar2(30) ,
+mem_pwd varchar2(30) not null,
+mem_name varchar2(30) not null,
+mem_email varchar2(30) not null,
+mem_reg_date date,
+
+CONSTRAINT PK_MEMID PRIMARY KEY (mem_id)
+);
+select * from member;
+
+-- 관리자 테이블
+create table manager(
+mng_id varchar2(30), 
+mng_pwd varchar2(30) not null,
+
+CONSTRAINT PK_MNGID PRIMARY KEY (mng_id)
+);
+
+--관리 파일
+create table allfile (
+f_no varchar2(10),
+f_name varchar2(10),
+
+CONSTRAINT PK_FNO PRIMARY KEY (f_no)
+);
+
+-- 앨범 테이블
+create table album(
+al_no varchar2(4),
+al_name varchar2(60) not null,
+al_release date,
+al_intro varchar2(4000),
+al_type varchar2(20) not null,
+f_no varchar2(10),
+
+CONSTRAINT PK_ALNO PRIMARY KEY (al_no),
+CONSTRAINT FK_AL_FNO FOREIGN KEY (f_no) REFERENCES ALLFILE on delete cascade
+);
+
+-- 아티스트 테이블
+create table artist(
+art_no varchar2(4),
+art_name varchar2(60) not null,
+art_intro varchar2(4000),
+art_debut date, 
+f_no varchar2(10),
+
+CONSTRAINT PK_ARTNO PRIMARY KEY (art_no),
+CONSTRAINT FK_ART_FNO FOREIGN KEY (f_no) REFERENCES ALLFILE on delete cascade
+);
+
+-- 음원 테이블
+create table music(
+mu_no varchar2(20),
+art_no varchar2(4) not null,
+al_no varchar2(4) not null,
+mu_name varchar2(90) not null,
+mu_ly varchar2(4000),
+mu_genre char(1) not null,
+mu_mood number(8) not null,
+mu_every_play number,
+mu_every_heart number(7),
+f_no varchar2(10),
+mu_yn char(1) default 'O',
+
+CONSTRAINT PK_MUNO PRIMARY KEY (mu_no),
+CONSTRAINT FK_M_ARTNO FOREIGN KEY (art_no) REFERENCES ARTIST on delete cascade,
+CONSTRAINT FK_M_ALNO FOREIGN KEY (al_no) REFERENCES ALBUM on delete cascade,
+CONSTRAINT FK_M_FNO FOREIGN KEY (f_no) REFERENCES ALLFILE on delete cascade,
+CONSTRAINT CHK_MUYN CHECK (mu_yn IN ('O', 'X'))
+);
+create index idx_mug on music(mu_genre);
+
+-- 음원 댓글 테이블
+create table musiccomment (
+mu_co_no number(7),
+mem_id varchar2(6),
+mu_no varchar2(24),
+mu_cont varchar2(1000),
+mu_ref number(7),
+mu_step number(3),
+mu_level number(1),
+mu_likes number(6) default 0,
+mu_hates number(6) default 0,
+mu_report number(2) default 0,
+mu_date timestamp default sysdate,
+
+CONSTRAINT PK_MUCONO PRIMARY KEY (mu_co_no),
+CONSTRAINT FK_MC_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER  on delete cascade,
+CONSTRAINT FK_MC_MUNO FOREIGN KEY (mu_no) REFERENCES MUSIC ON DELETE CASCADE
+);
+
+-- 앨범 댓글 테이블
+create table albumcomment (
+al_co_no number(7),
+mem_id varchar2(30),
+al_no varchar2(24)  not null,
+al_cont varchar2(1000) not null,
+al_ref number(7),
+al_step number(3),
+al_level number(1),
+al_likes number(6)  default 0,
+al_hates number(6)  default 0,
+al_report number(2)  default 0,
+al_date timestamp default sysdate,
+
+
+CONSTRAINT PK_ALCONO PRIMARY KEY (al_co_no),
+CONSTRAINT FK_AL_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER  on delete cascade,
+CONSTRAINT FK_AL_ALNO FOREIGN KEY (al_no) REFERENCES ALBUM  ON DELETE CASCADE
+);
+
+-- 아티스트 댓글 테이블
+create table artistcomment (
+art_co_no number(7),
+mem_id varchar2(30),
+art_no varchar2(24)  not null,
+art_cont varchar2(1000) not null,
+art_ref number(7),
+art_step number(3),
+art_level number(1),
+art_likes number(6)  default 0,
+art_hates number(6)  default 0,
+art_report number(2)  default 0,
+art_date timestamp default sysdate,
+
+
+CONSTRAINT PK_ARTCONO PRIMARY KEY (art_co_no),
+CONSTRAINT FK_AR_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER  on delete cascade,
+CONSTRAINT FK_AR_ARTNO FOREIGN KEY (art_no) REFERENCES ARTIST  ON DELETE CASCADE
+);
+
+-- 게시글 테이블
+create table post (
+        p_no varchar2(7),
+        p_name varchar2(90) not null,
+        p_content varchar2(4000) not null,
+        mng_id varchar2(30),
+        p_hits number(8) default 0,
+        p_time timestamp default sysdate,
+        p_satis number(8) default 0,
+        p_unsatis number(8) default 0,
+        p_type varchar2(12) not null,
+
+CONSTRAINT PK_PNO PRIMARY KEY (p_no),
+CONSTRAINT FK_P_MNGID FOREIGN KEY (mng_id) REFERENCES MANAGER on delete cascade
+);
+
+-- 이용권 테이블
+create table membership(
+ms_no varchar2(3),
+ms_type varchar2(3),
+ms_price number(6),
+
+CONSTRAINT PK_MSNO PRIMARY KEY (ms_no)
+);
+
+-- 스트리밍 구매 이력 테이블
+create table streaming(
+mem_id varchar2(30),
+ms_no varchar2(3),
+ms_str_date date,
+ms_str_left date,
+
+CONSTRAINT FK_ST_MEMID foreign KEY (mem_id) REFERENCES MEMBER(mem_id) on delete cascade,
+CONSTRAINT FK_ST_MSNO foreign KEY (ms_no) REFERENCES MEMBERSHIP(ms_no) on delete cascade
+);
+
+-- 음원 구매 패키지 구매이력 테이블
+create table buypackage(
+mem_id varchar2(30),
+ms_no varchar2(2),
+ms_p_date date,
+ms_p_left number(3),
+
+CONSTRAINT FK_BU_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_BU_MSNO FOREIGN KEY (ms_no) REFERENCES MEMBERSHIP on delete cascade
+);
+
+-- 캐시 구매이력 테이블
+create table cash(
+mem_id varchar2(30),
+mu_no varchar2(20),
+cs_price number(8),
+cs_left number(8),
+
+CONSTRAINT FK_C_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_C_MUNO FOREIGN KEY (mu_no) REFERENCES MUSIC on delete cascade
+);
+
+-- 보관함 테이블
+create table mybag(
+mem_id varchar2(30),
+relv_no varchar2(20),
+
+CONSTRAINT FK_MB_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade
+);
+
+-- 문의 테이블
+create table question(
+que_no number(7),
+mem_id varchar2(30),
+que_name varchar2(90) not null,
+que_content varchar2(4000) not null,
+que_file varchar2(10),
+que_secret char(1) default 'O',
+que_ref number(7) default 0,
+que_step number(3) default 0,
+que_level number(1) default 0,
+que_cnt number(7) default 0,
+que_date date  default sysdate,
+
+CONSTRAINT PK_QUENO PRIMARY KEY (que_no),
+CONSTRAINT FK_Q_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT CHK_QUE_SEC CHECK (QUE_SECRET IN ('O','X'))
+);
+
+-- 검색어 테이블
+create table search(
+sear_word varchar2(60),
+sear_hits number,
+sear_time timestamp default sysdate
+);
+
+-- 첫 선택 테이블
+create table firstchoice(
+mem_id varchar2(30),
+mu_genre_1 varchar2(2),
+mu_genre_2 varchar2(2),
+mu_genre_3 varchar2(2),
+art_no_1 varchar2(4),
+art_no_2 varchar2(4),
+art_no_3 varchar2(4),
+
+CONSTRAINT FK_FC_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade
+);
+
+-- 들은 음악 리스트 테이블
+create table musichistory(
+mem_id varchar2(30),
+mu_no varchar2(20),
+play_more_min number(4) default 0,
+play_date timestamp default sysdate,
+play_now char(1) default 'Y',
+
+CONSTRAINT FK_MH_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_MH_MUNO FOREIGN KEY (mu_no) REFERENCES MUSIC on delete cascade
+);
+
+-- 하트 테이블
+create table heart(
+mem_id varchar2(30),
+mu_no varchar2(20),
+
+CONSTRAINT FK_H_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_H_MUNO FOREIGN KEY (mu_no) REFERENCES MUSIC ON DELETE CASCADE
+);
+
+-- 문의 답변 테이블
+create table answer(
+ans_no number(7),
+mng_id varchar2(30),
+ans_name varchar2(90),
+ans_content varchar2(4000),
+ans_date date,
+que_no number(7),
+
+CONSTRAINT PK_ANSNO PRIMARY KEY (ans_no),
+CONSTRAINT FK_A_MNGID FOREIGN KEY (mng_id) REFERENCES MANAGER on delete cascade,
+CONSTRAINT FK_A_QUENO FOREIGN KEY (que_no) REFERENCES QUESTION on delete cascade
+);
+
+-- 게시물 파일 관리 목록 테이블
+create table postfile(
+f_no varchar2(10),
+p_no varchar2(7),
+
+que_no number(7),
+ans_no number(7),
+
+CONSTRAINT FK_PF_FNO FOREIGN KEY (f_no) REFERENCES ALLFILE on delete cascade,
+CONSTRAINT FK_PF_PNO FOREIGN KEY (p_no) REFERENCES POST on delete cascade,
+
+CONSTRAINT FK_PF_QUENO FOREIGN KEY (que_no) REFERENCES QUESTION ON DELETE CASCADE,
+CONSTRAINT FK_PF_ANSNO FOREIGN KEY (ans_no) REFERENCES ANSWER ON DELETE CASCADE
+);
+
+--통계 테이블
+create table stats(
+st_user_amt number,
+st_satis_amt number,
+st_unsatis_amt number,
+st_reg_amt number,
+st_ms_amt number,
+st_day_user_amt number,
+st_day_reg_amt number,
+st_day_ms_amt number,
+st_date date
+);
+
+-- 댓글 좋아요 테이블
+create table likes(
+mem_id varchar2(30),
+mu_co_no number(7),
+al_co_no number(7),
+art_co_no number(7),
+
+CONSTRAINT FK_LI_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_LI_MUCONO FOREIGN KEY (mu_co_no) REFERENCES MUSICCOMMENT ON DELETE CASCADE,
+CONSTRAINT FK_LI_ALCONO FOREIGN KEY (al_co_no) REFERENCES ALBUMCOMMENT ON DELETE CASCADE,
+CONSTRAINT FK_LI_ARTCONO FOREIGN KEY (art_co_no) REFERENCES ARTISTCOMMENT ON DELETE CASCADE
+);
+-- 댓글 싫어요 테이블
+create table HATES(
+mem_id varchar2(30),
+mu_co_no number(7),
+al_co_no number(7),
+art_co_no number(7),
+
+CONSTRAINT FK_HA_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_HA_MUCONO FOREIGN KEY (mu_co_no) REFERENCES MUSICCOMMENT ON DELETE CASCADE,
+CONSTRAINT FK_HA_ALCONO FOREIGN KEY (al_co_no) REFERENCES ALBUMCOMMENT ON DELETE CASCADE,
+CONSTRAINT FK_HA_ARTCONO FOREIGN KEY (art_co_no) REFERENCES ARTISTCOMMENT ON DELETE CASCADE
+);
+
+-- 댓글 신고 테이블
+create table report(
+mem_id varchar2(30),
+mu_co_no number(7),
+al_co_no number(7),
+art_co_no number(7),
+
+CONSTRAINT FK_RE_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER on delete cascade,
+CONSTRAINT FK_RE_MUCONO FOREIGN KEY (mu_co_no) REFERENCES MUSICCOMMENT ON DELETE CASCADE,
+CONSTRAINT FK_RE_ALCONO FOREIGN KEY (al_co_no) REFERENCES ALBUMCOMMENT ON DELETE CASCADE,
+CONSTRAINT FK_RE_ARTCONO FOREIGN KEY (art_co_no) REFERENCES ARTISTCOMMENT ON DELETE CASCADE
+);
+
+-- 장르 테이블
+create table genre(
+gn_no char(1),
+gn_name varchar2(30),
+f_no varchar2(10),
+
+CONSTRAINT FK_GENRE_FRNO FOREIGN KEY (f_no) REFERENCES ALLFILE on delete cascade);
+
+-- 최근 들은 음악 테이블
+create table currmusic(
+mem_id varchar2(30),
+mu_no varchar2(20),
+
+CONSTRAINT FK_CM_MEMID FOREIGN KEY (mem_id) REFERENCES MEMBER ON DELETE CASCADE
+);
+
+-- 좋아요 내용 테이블
+create table contlike(
+mem_id varchar2(30),
+mu_co_no number(7),
+constraint pk_contlike primary key (mem_id, mu_co_no)
+);
+
+-- 싫어요 내용 테이블
+create table contdislike(
+mem_id varchar2(30),
+mu_co_no number(7),
+constraint pk_contdislike primary key (mem_id, mu_co_no)
+);
+
+-- 무드 테이블
+create table mood(
+mo_no char(1),
+mo_name varchar2(30),
+f_no varchar2(10),
+
+CONSTRAINT FK_MOOD_FRNO FOREIGN KEY (f_no) REFERENCES ALLFILE on delete cascade);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- 앨범번호 시퀀스 생성
+create sequence alno_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+-- 아티스트 시퀀스 생성
+create sequence artno_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+
+-- 음원댓글 시퀀스 생성
+create sequence MU_COMMENT_SEQ
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+-- 앨범 댓글 시퀀스 생성
+create sequence AL_COMMENT_SEQ
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+-- 아티스트 댓글 시퀀스 생성
+create sequence ART_COMMENT_SEQ
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+-- 첨부 파일 시퀀스 생성
+create sequence fno_seq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999999999
+nocycle
+cache 20;
+
+-- 게시글 번호 시퀀스 생성
+create sequence P_NO_SEQ
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+-- 문의 번호 시퀀스 생성
+create sequence QUE_NO_SEQ
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+
+-- 문의 답글 번호 시퀀스 생성
+create sequence ANS_NO_SEQ
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999
+nocycle
+cache 20;
+
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'question';
