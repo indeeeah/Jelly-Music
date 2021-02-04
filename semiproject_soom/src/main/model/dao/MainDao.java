@@ -251,10 +251,17 @@ public class MainDao {
 
 	public List<MainVO> mayLikeMusic(Connection conn, String mem_id) {
 		List<MainVO> mvo = new ArrayList<MainVO>();
-		String sql = "select mem_id, mu_name, music.mu_no, art_name, mu_every_play, mu_every_heart, mu_genre, f_name "
-				+ "from heart join music on heart.mu_no = music.mu_no "
-				+ "inner join artist on music.art_no = artist.art_no "
-				+ "inner join allfile on artist.f_no = allfile.f_no " + "where mem_id=?";
+		String sql = "select * from"
+		 + "(select rownum rnum, s.* from "
+		 + "(select (nvl(m.cnt, 0) + nvl(h.cnt, 0)) sum, nvl(h.mu_no, m.mu_no) mu_no1 from "
+		 + "(select count(mem_id) cnt, mu_no from musichistory "
+		 + "where mem_id in(select mem_id from musichistory "
+		 + "where mu_no =(select mu_no from (select rownum rnum, m.* from "
+		 + "(select * from musichistory where mem_id = ? order by play_more_min desc) m) "
+		 + "where rnum=1)) group by mu_no) m full outer join (select count(mem_id) cnt, mu_no from heart "
+		 + "where mu_no in(select mu_no from heart where mem_id = ?) group by mu_no) h "
+		 + "on m.mu_no=h.mu_no order by sum desc) s where mu_no1 not in (select mu_no from heart "
+		 + "where mem_id = ?) order by sum desc)where rnum<6";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
