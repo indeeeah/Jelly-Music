@@ -5,9 +5,10 @@
 2. [설계의 주안점](#설계의-주안점)
 3. [Using](#Using)
 4. [업무일정](#업무일정)
-5. [Jelly-Music 기능 설명](#Jelly-Music-기능-설명)
-6. [Document](#Document)
-7. [추후 구현 예정 기능](#추후-구현-예정-기능)
+5. [Part](#Part)
+6. [Jelly-Music 기능 설명](#Jelly-Music-기능-설명)
+7. [Document](#Document)
+8. [추후 구현 예정 기능](#추후-구현-예정-기능)
 ------------
 ## 프로젝트 계획 이유
 > 음악 스트리밍 사이트와 동영상 스트리밍 사이트 등 여러 스트리밍 사이트를 구독하면서 많은 사이트들이 추천 알고리즘에 집중하고 있다는 것을 알게 되었습니다. '알고리즘의 선택'이라는 말이 생길 만큼 이제는 알고리즘이 단순한 추천을 넘어서 숨어있던 컨텐츠들을 유명하게 만드는 역할까지 하고 있습니다.
@@ -39,6 +40,16 @@
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 27 46" src="https://user-images.githubusercontent.com/72774483/106250839-82bc7e00-6257-11eb-99c6-11093acd3bc5.png">
 
 ------------
+## Part
+### 김수민
++ 메인페이지 관리
++ 노래 메인페이지 관리
++ 회원 신고 기능
++ 플레이어 관리
++ 음악 취향 선택 페이지 관리
++ 회원가입완료 페이지 관리
+------------
+
 ## Jelly-Music 기능 설명
 ### [mode 선택 기능]
 1. Manager 기능 : 관리자가 사용하는 기능
@@ -127,8 +138,11 @@
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 45 00 1" src="https://user-images.githubusercontent.com/72774483/106252928-2c047380-625a-11eb-83f4-aa6b9f29f232.png">
 >
 4. ERD
-<img width="1680" alt="스크린샷 2021-01-29 오후 5 28 35" src="https://user-images.githubusercontent.com/72774483/106251161-fd859900-6257-11eb-80f1-6775520085ce.png">
+<img width="1018" alt="스크린샷 2021-02-04 오후 8 48 53" src="https://user-images.githubusercontent.com/72774483/106891124-a129ea00-672d-11eb-9e4a-f21f15b3fa2d.png">
 
+> + Jelly는 비회원, 회원, 이용권 유무에 따라서 사용할 수 있는 서비스가 다릅니다.
+> + 테이블들은 Music 테이블을 중심으로, Jelly Music은 각 Music, Artist, Album 테이블의 정보로 이루어져 있습니다.
+> + 회원은 Buypackage 테이블의 데이터 유무로 음악 플레이 시 1분 미리듣기와 전곡 듣기로 나누어집니다.
 5. 테이블 정의서
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 44 31" src="https://user-images.githubusercontent.com/72774483/106252986-3cb4e980-625a-11eb-892a-28afb9437914.png">
 
