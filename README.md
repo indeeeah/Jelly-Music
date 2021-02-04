@@ -76,31 +76,158 @@
 1. Register
 > + 회원가입 기능
 > + 선호 아티스트, 장르 선택
->  <img width="985" alt="스크린샷 2021-01-29 오후 5 10 06" src="https://user-images.githubusercontent.com/72774483/106249622-f1004100-6255-11eb-959b-81f37c2e4050.png">
->  <img width="983" alt="스크린샷 2021-01-29 오후 5 10 17" src="https://user-images.githubusercontent.com/72774483/106249674-05443e00-6256-11eb-9dce-0cb34fffc9f0.png">
->
->      + 각 3개씩 선택 시 데이터 insert, 후에 음악 추천시 영향
+
+  <img width="985" alt="스크린샷 2021-01-29 오후 5 10 06" src="https://user-images.githubusercontent.com/72774483/106249622-f1004100-6255-11eb-959b-81f37c2e4050.png">
+ <img width="983" alt="스크린샷 2021-01-29 오후 5 10 17" src="https://user-images.githubusercontent.com/72774483/106249674-05443e00-6256-11eb-9dce-0cb34fffc9f0.png">
+
+ #
+ firstGenre.jsp
+ ``` javascript
+ var maxChecked = 3;
+var totalChecked = 0;
+function CountChecked(field) {
+    var value_list = []
+    $('input:checkbox[name=achk]:checked').each(function() {
+        var checked_value = $(this).val();
+        value_list.push(checked_value);
+    });
+    if (field.checked) {
+        totalChecked += 1;
+    } else {
+        totalChecked -= 1;
+    }
+    console.log(totalChecked);
+    if (totalChecked > maxChecked) {
+        alert("최대 3개까지 가능");
+        field.checked = false;
+        totalChecked -= 1;
+    }
+    if (totalChecked == 0) {
+    } else if (totalChecked == 1) {
+        $("#mu_genre_1").val(value_list[0]);
+    } else if (totalChecked == 2) {
+        $("#mu_genre_1").val(value_list[0]);
+        $("#mu_genre_2").val(value_list[1]);
+    } else if (totalChecked == 3) {
+        $("#mu_genre_1").val(value_list[0]);
+        $("#mu_genre_2").val(value_list[1]);
+        $("#mu_genre_3").val(value_list[2]);
+    }
+}
+ ```
+ + 각 3개까지 선택 가능하게 maxChecked를 설정하였습니다.
+ + 체크된 체크박스의 value를 배열로 넣어주었습니다.
+ + 체크된 체크박스가 3개 이하일 때 mu_genre_1,2,3에 넣어준 뒤 그 값을 insert 해주었습니다.
+ #
+
+> + 각 3개씩 선택 시 데이터 insert, 후에 음악 추천시 영향
 > + 회원가입 완료 시 최근 재생 음악 바로 플레이를 위한 임시 데이터 insert 기능
-> <img width="983" alt="스크린샷 2021-01-29 오후 5 10 33" src="https://user-images.githubusercontent.com/72774483/106249865-3ae92700-6256-11eb-9517-dca9c1e2e5f1.png">
->
+
+<img width="983" alt="스크린샷 2021-01-29 오후 5 10 33" src="https://user-images.githubusercontent.com/72774483/106249865-3ae92700-6256-11eb-9517-dca9c1e2e5f1.png">
+
+#
+FinishRegisterDao.java
+``` java
+String sql = "insert into currmusic values (?, '0000')";
+```
++ 0000으로 임시 데이터를 생성하였습니다.
++ 이후 음악을 재생 할 때마다 currmusic은 해당 음원 번호로 update 됩니다.
+#
+
 2. Login
 > + 로그인 시 세션 생성 기능 - 아이디, 멤버쉽 유무
 3. List
-> <img width="982" alt="스크린샷 2021-01-29 오후 5 09 34" src="https://user-images.githubusercontent.com/72774483/106249436-b5fe0d80-6255-11eb-9dbd-252b0f68e5cb.png">
-><img width="985" alt="스크린샷 2021-01-29 오후 5 10 45" src="https://user-images.githubusercontent.com/72774483/106249961-5a804f80-6256-11eb-9941-a824135c1fdb.png">
-><img width="985" alt="스크린샷 2021-01-29 오후 5 11 05" src="https://user-images.githubusercontent.com/72774483/106250442-fca03780-6256-11eb-99e4-c472df4e4cb9.png">
->
+
+<img width="982" alt="스크린샷 2021-01-29 오후 5 09 34" src="https://user-images.githubusercontent.com/72774483/106249436-b5fe0d80-6255-11eb-9dbd-252b0f68e5cb.png">
+<img width="985" alt="스크린샷 2021-01-29 오후 5 10 45" src="https://user-images.githubusercontent.com/72774483/106249961-5a804f80-6256-11eb-9941-a824135c1fdb.png">
+<img width="985" alt="스크린샷 2021-01-29 오후 5 11 05" src="https://user-images.githubusercontent.com/72774483/106250442-fca03780-6256-11eb-99e4-c472df4e4cb9.png">
+
 > + 비회원
 >      + TOP 100, Heart 차트, 장르별, 무드별 음악 리스트 확인 기능
 > + 회원
 >      + 추천 음악, 추천 아티스트, TOP 100, Heart 차트, 장르별, 무드별 음악 리스트 확인 기능
+
+#
+MainDao.java
+ ``` javascript
+ // 회원이 최근 들은 음악 리스트
+ public List<MainVO> getMemPlay(Connection conn, String mem_id) {
+    List<MainVO> mvo = new ArrayList<MainVO>();
+    String sql = "select * from (select rownum rnum, m.* "
+            + "from (select mem_id, mu_name, al_name, art_name, play_date, f_name, music.mu_no "
+            + "from music join album on music.al_no = album.al_no "
+            + "inner join artist on music.art_no = artist.art_no "
+            + "left outer join allfile on album.f_no = allfile.f_no "
+            + "right outer join musichistory on music.mu_no = musichistory.mu_no "
+            + "where mem_id=? and play_now='Y' order by play_date desc) m) " 
+            + "where rnum between 1 and 5";
+
+// 회원별 추천 아티스트
+public List<MainVO> mayLikeArt(Connection conn, String mem_id) {
+    List<MainVO> mvo = new ArrayList<MainVO>();
+    String sql = "select * from " 
+            + "(select * from (select rownum rnum, m.* "
+            + "from(select art_name, f_name, mu_genre " 
+            + "from artist join allfile on artist.f_no = allfile.f_no "
+            + "inner join music on artist.art_no = music.art_no " 
+            + "group by mu_genre, art_name, f_name) m) ) a "
+            + "where mu_genre in (select distinct b.mu_genre from "
+            + "(select mu_genre, count(mu_genre), art_name, f_name, mem_id "
+            + "from artist inner join music on artist.art_no = music.art_no "
+            + "inner join allfile on artist.f_no = allfile.f_no "
+            + "inner join musichistory on musichistory.mu_no = music.mu_no "
+            + "group by mu_genre, f_name, art_name, mem_id " 
+            + "having mem_id = ? "
+            + "order by count(mu_genre) desc) b)";
+
+// 회원별 추천 음악
+public List<MainVO> mayLikeMusic(Connection conn, String mem_id) {
+    List<MainVO> mvo = new ArrayList<MainVO>();
+    String sql = "select * from"
+		 + "(select rownum rnum, s.* from "
+		 + "(select (nvl(m.cnt, 0) + nvl(h.cnt, 0)) sum, nvl(h.mu_no, m.mu_no) mu_no1 from "
+		 + "(select count(mem_id) cnt, mu_no from musichistory "
+		 + "where mem_id in(select mem_id from musichistory "
+		 + "where mu_no =(select mu_no from (select rownum rnum, m.* from "
+		 + "(select * from musichistory where mem_id = ? order by play_more_min desc) m) "
+		 + "where rnum=1)) group by mu_no) m full outer join (select count(mem_id) cnt, mu_no from heart "
+		 + "where mu_no in(select mu_no from heart where mem_id = ?) group by mu_no) h "
+		 + "on m.mu_no=h.mu_no order by sum desc) s where mu_no1 not in (select mu_no from heart "
+		 + "where mem_id = ?) order by sum desc)where rnum<6";
+
+ ```
+ + 회원이 최근 들은 음악 리스트
+    + 회원이 최근 들은 음악 중 최근 날짜부터 정리하여 1부터 5번째의 음악 리스트를 보여줍니다.
+ + 회원별 추천 아티스트
+    + 회원이 들은 음악 중 비슷한 장르의 음원을 많이 발매한 아티스트를 추천합니다.
+ + 회원별 추천 음악
+    + 회원이 많이 재생한 음악, 하트를 클릭한 음악의 정보로 회원에게 음악을 추천합니다.
+    + 추후 수정 예정인 쿼리문입니다.
+#
+
 4. Search (추후 구현 예정)
 5. Real-Time Search
 > + 검색 수에 따라 실시간 검색어 변동 기능
 6. PLAYER
-><img width="984" alt="스크린샷 2021-01-29 오후 5 11 25" src="https://user-images.githubusercontent.com/72774483/106250486-0c1f8080-6257-11eb-8015-35f91ca51bb5.png">
-><img width="987" alt="스크린샷 2021-01-29 오후 5 11 37" src="https://user-images.githubusercontent.com/72774483/106250526-1a6d9c80-6257-11eb-940a-eeff4dff26c9.png">
->
+
+<img width="984" alt="스크린샷 2021-01-29 오후 5 11 25" src="https://user-images.githubusercontent.com/72774483/106250486-0c1f8080-6257-11eb-8015-35f91ca51bb5.png">
+<img width="987" alt="스크린샷 2021-01-29 오후 5 11 37" src="https://user-images.githubusercontent.com/72774483/106250526-1a6d9c80-6257-11eb-940a-eeff4dff26c9.png">
+
+
+#
+ ``` javascript
+var vid = document.getElementById("player");
+    vid.onplaying = function() {
+        timeOut = setTimeout(function() {
+            vid.pause();
+            alert("이용권을 구매해주세요");
+            window.opener.location.href = "<%=request.getContextPath() %>/MembershipServlet"
+        }, 3000);
+    };
+```
++ 이용권 유무를 검사하는 코드입니다.
++ 1분 미리듣기 기능이지만 빠른 기능 시연을 위해 3초 뒤 이용권 구매 페이지로 이동하도록 작업하였습니다.
+#
 > + 회원(이용권 무)
 >      + 이용권 유무 검사 기능
 >      + 1분 미리듣기 후 이용권 페이지 이동 기능
@@ -136,7 +263,7 @@
 
 3. UI 설계서
 <img width="1680" alt="스크린샷 2021-01-29 오후 5 45 00 1" src="https://user-images.githubusercontent.com/72774483/106252928-2c047380-625a-11eb-83f4-aa6b9f29f232.png">
->
+
 4. ERD
 <img width="1018" alt="스크린샷 2021-02-04 오후 8 48 53" src="https://user-images.githubusercontent.com/72774483/106891124-a129ea00-672d-11eb-9e4a-f21f15b3fa2d.png">
 
